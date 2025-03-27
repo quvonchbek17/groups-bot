@@ -8,7 +8,6 @@ async function getChatIdByUsername(username) {
         const chat = await bot.telegram.getChat(username);
         return chat.id;
     } catch (error) {
-        console.error(`Xatolik ${username} uchun: ${error.message}`);
         return null;
     }
 }
@@ -28,7 +27,7 @@ bot.on('message', async (ctx) => {
 
         try {
             for (let i = 1; i <= 12; i++ ) {
-                const username = `test_group${i}www`
+                const username = `@test_group${i}www`
                 const chatId = await getChatIdByUsername(username);
                 if (chatId) {
                     await bot.telegram.forwardMessage(chatId, fromChatId, messageId);
