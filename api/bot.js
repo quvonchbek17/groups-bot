@@ -22,7 +22,7 @@ bot.command('start', (ctx) => {
 });
 // Har qanday xabarni forward qilish
 bot.on('message', async (ctx) => {
-    if (ctx.chat.id === allowedChatId) { // Faqat shaxsiy chatdan
+    if (String(ctx.chat.id) === allowedChatId) { // Faqat shaxsiy chatdan
         const messageId = ctx.message.message_id;
         const fromChatId = ctx.chat.id;
 
