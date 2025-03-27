@@ -1,7 +1,7 @@
 const { Telegraf } = require('telegraf');
 const bot = new Telegraf(process.env.BOT_TOKEN);
 
-const allowedChatId = '1124198238'
+const allowedChatId = process.env.ALLOWED_CHAT_ID
 
 async function getChatIdByUsername(username) {
     try {
@@ -31,16 +31,12 @@ bot.on('message', async (ctx) => {
                 const chatId = await getChatIdByUsername(username);
                 if (chatId) {
                     await bot.telegram.forwardMessage(chatId, fromChatId, messageId);
-                } else {
-                    ctx.reply(`${username} topilmadi yoki botda ruxsat yo'q.`);
                 }
             }
             ctx.reply('Xabar jilddagi guruhlarga forward qilindi!');
         } catch (error) {
             ctx.reply('Xatolik yuz berdi: ' + error.message);
         }
-    } else {
-        ctx.reply('Sizga bu botdan foydalanishga ruxsat yo‘q.');
     }
 });
 
